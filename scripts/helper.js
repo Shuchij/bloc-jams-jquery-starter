@@ -6,7 +6,7 @@ class Helper {
     player.playPause(song);
 
     // Get song duration value and add it as text for div named total-time
-    $('#time-control .total-time').text(song.duration);
+    $('#time-control .total-time').text(player.prettyTime(song.duration));
   }
 
 }

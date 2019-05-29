@@ -2,6 +2,9 @@
 
   album.songs.forEach( (song, index) => {
 
+
+    var duration=song.duration;
+
     // Notice the usage of adding 3 classes in first cell of each row. This
     // Allows use to leverage already defined CSS in player-bar.css and
     // avoid finding an alternative using JQuery/DOM scripting to change
@@ -16,7 +19,7 @@
           </button>
         </td>
         <td>${song.title}</td>
-        <td>${song.duration}</td>
+        <td>${player.prettyTime(duration)}</td>
        </tr>
     `);
 

@@ -70,7 +70,7 @@
       // Calculate percentage of the total time of the song
       const percent = (currentTime / duration) * 100;
       // Update current-time value for the song being played
-      $('#time-control .current-time').text( currentTime );
+      $('#time-control .current-time').text( player.prettyTime(currentTime));
 
 
       $('#time-control input').val(percent);
