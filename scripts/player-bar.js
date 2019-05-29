@@ -2,7 +2,10 @@
 
   // Add event handler for play-pause button to change it's icon depending on whether a song is being played
    $('button#play-pause').on('click', function() {
-     player.playPause();
+
+     // Modified call to playPause to accept player.currentlyPlaying which would be a song object
+     helper.playPauseAndUpdate(player.currentlyPlaying);
+
      // Set value of attribute 'playState' of the button to whatever is the value of
      // player.playState
      $(this).attr('playState', player.playState);
@@ -23,7 +26,7 @@
        if (previousSongIndex < 0) { return;}
 
        const previousSong = album.songs[previousSongIndex];
-       player.playPause(previousSong);
+       helper.playPauseAndUpdate(previousSong);
     });
 
     // Add event handler for next button to play next song in the list unless the song being played
@@ -42,12 +45,18 @@
        if (nextSongIndex >= album.songs.length) { return; }
 
        const nextSong = album.songs[nextSongIndex];
-       player.playPause(nextSong);
+       helper.playPauseAndUpdate(nextSong);
 
     });
 
+    // Event handler for the song position slider
     $('#time-control input').on('input', function (event) {
       player.skipTo(event.target.value);
+    });
+
+    // Event handler for the volume level slider
+    $('#volume-control input').on('input', function (event) {
+      player.setVolume(event.target.value);
     });
 
     setInterval( () => {
